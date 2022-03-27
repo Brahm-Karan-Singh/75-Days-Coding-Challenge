@@ -11,3 +11,9 @@
 ### 2. Pivot Index In An Array
 ### 3. Majority Element In An Array
 ### 4. Squares Of Sorted Array
+
+## Day 3 Questions -
+### 1. 3 Sum
+### 2. Merge Intervals
+### 3. Pascal Triangle
+### 4. Remove Duplicates in a Sorted Array
