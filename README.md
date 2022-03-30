@@ -17,3 +17,15 @@
 ### 2. Merge Intervals
 ### 3. Pascal Triangle
 ### 4. Remove Duplicates in a Sorted Array
+
+## Day 4 Questions -
+### 1. Container With Most Water
+### 2. Inset Delete GetRandom O(1)
+### 3. Next Permutation
+### 4. Sub Array Sum Equals K
+
+## Day 3 Questions -
+### 1. Rotate Image Matrix
+### 2. Spiral Matrix
+### 3. Wave Print
+
