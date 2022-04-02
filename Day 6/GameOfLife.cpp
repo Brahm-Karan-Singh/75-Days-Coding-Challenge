@@ -1,59 +1,55 @@
-using board_t = vector<vector<int>>;
-
 class Solution {
 public:
-
-    const vector<int> x {1, 1, 1, 0, 0, -1, -1, -1};
-    const vector<int> y {0, 1, -1, 1, -1, -1, 1, 0};
-    
-    const int MAX_NEIGHBOURS = 8;
-    
-    const int IS_LIVE = 1 << 1;
-    
-    bool isValid(const int row, const int col, const int ROW_MAX, const int COL_MAX) {
-        return (row >= 0 && row < ROW_MAX && col >=0 && col < COL_MAX);
-    }
-    
-    int getNumLiveNeighbours(const board_t& board, const int curr_x, const int curr_y,
-                         const int ROW_MAX, const int COL_MAX) {
+  
+    int countScore(vector<vector<int>> b, int row,int col,int rows,int columns){
+        vector<vector<int>> dir {
+            {-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}
+        };
         int count = 0;
-        int new_x = 0;
-        int new_y = 0;
-        for(int i = 0; i < MAX_NEIGHBOURS; i++) {
-            new_x = curr_x + x[i];
-            new_y = curr_y + y[i];
-            if(isValid(new_x, new_y, ROW_MAX, COL_MAX) && (board[new_x][new_y] & IS_LIVE)) count++; 
+        
+        for(vector<int> d:dir){
+            int nrow = d[0] + row;
+            int ncol = d[1] + col;
+            
+            if(nrow>=0 && nrow<rows && ncol>=0 && ncol<columns && (b[nrow][ncol] == 1 || b[nrow][ncol] == -1)){
+                count ++;
+            }
         }
-        return count;
+        
+        return count;        
     }
     
-    int getNewCellValue(const bool currLive, const int numLiveNeighbours) {
-        if (!currLive && numLiveNeighbours == 3) return 1;
-        if (currLive && numLiveNeighbours < 2) return 0;
-        if (currLive && (numLiveNeighbours == 2 || numLiveNeighbours == 3)) return 1;
-        if (currLive && numLiveNeighbours > 3) return 0;
-        return currLive ? 1 : 0;
-    } 
-    
-    void gameOfLife(board_t& board) {
+    void gameOfLife(vector<vector<int>>& board) {
+        int rows = board.size();
+        int columns = board[0].size();
         
-        const int ROW_MAX = board.size();
-        const int COL_MAX = board[0].size();
-        
-        for (auto &row: board)
-            for (auto &elem : row)
-                elem = elem << 1;
-        
-        for (int i = 0; i < ROW_MAX; i++)
-            for(int j = 0; j < COL_MAX; j++) {
-                const int numLiveNeighbours = getNumLiveNeighbours(board, i, j, ROW_MAX, COL_MAX);
-                const bool isCurrLive = board[i][j] & IS_LIVE;
-                board[i][j] = board[i][j] | getNewCellValue(isCurrLive, numLiveNeighbours);
+        for(int i=0; i<rows; i++){
+            for(int j=0;j<columns; j++){
+                
+                int count = countScore(board,i,j,rows,columns);
+                
+                if(count < 2 || count > 3 ){
+                    
+                    
+                    if(board[i][j] == 1)
+                        board[i][j] = -1;
+                    else
+                        board[i][j] = 0;
+                }
+                else if(count == 3 && board[i][j] == 0 ){
+                    board[i][j] = 2;
+                }
+                
             }
+        }
         
-        for (auto &row: board)
-            for (auto &elem : row) {
-                elem = elem & ~(1 << 1);
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<columns;j++){
+               
+                board[i][j] = board[i][j] > 0? 1:0;
+                
             }
+        }
+        
     }
 };
