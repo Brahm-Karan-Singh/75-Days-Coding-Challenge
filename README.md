@@ -24,8 +24,18 @@
 ### 3. Next Permutation
 ### 4. Sub Array Sum Equals K
 
-## Day 3 Questions -
+## Day 5 Questions -
 ### 1. Rotate Image Matrix
 ### 2. Spiral Matrix
 ### 3. Wave Print
+
+## Day 6 Questions -
+### 1. 3 Sum Closest
+### 2. 4 Sum
+### 3. Game of Life
+### 4. Pair of songs whose total duration is divisble by 60
+
+## Day 7 -
+### 1. Implementation of Singly linked list with basic operations like insert, delete and traverse
+### 2. Implementation of Circular Doubly linked list with basic operations like insert, delete and traverse
 
